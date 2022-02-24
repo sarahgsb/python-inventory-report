@@ -1,16 +1,12 @@
-from utils.csv_reader import serialize_csv
 from abc import ABC
-from reports.simple_report import SimpleReport
-from reports.complete_report import CompleteReport
+from inventory_report.reports.simple_report import SimpleReport
+from inventory_report.reports.complete_report import CompleteReport
+from inventory_report.utils.csv_reader import reader_csv
 
 
 class Inventory(ABC):
-    def __init__(self, report, type):
-        self.report = serialize_csv(report)
-        self.type = type
-
-    def import_data(self):
-        if self.type == 'simples':
-            return SimpleReport.generate(self.report)
+    def import_data(path, type):
+        if type == 'simples':
+            return SimpleReport.generate(reader_csv(path))
         else:
-            return CompleteReport.generate(self.report)
+            return CompleteReport.generate(reader_csv(path))

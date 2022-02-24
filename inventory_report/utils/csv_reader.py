@@ -1,7 +1,7 @@
 import csv
 
 
-def serialize_csv(path):
+def reader_csv(path):
     with open(path) as file:
         csv_reader = csv.DictReader(file, delimiter=",")
         csv_content = []
