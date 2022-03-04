@@ -7,18 +7,17 @@ import sys
 
 
 def main():
+    obj = None
 
     if len(sys.argv) == 3:
         path = sys.argv[1]
         report_type = sys.argv[2]
         if path.endswith('.csv'):
             obj = InventoryRefactor(CsvImporter)
-            return print(obj.import_data(path, report_type), end="")
         elif path.endswith('.json'):
             obj = InventoryRefactor(JsonImporter)
-            return print(obj.import_data(path, report_type), end="")
         elif path.endswith('.xml'):
             obj = InventoryRefactor(XmlImporter)
-            return print(obj.import_data(path, report_type), end="")
+        return print(obj.import_data(path, report_type), end="")
     else:
         sys.stderr.write('Verifique os argumentos\n')
